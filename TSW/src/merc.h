@@ -32,6 +32,8 @@
 #include <time.h>
 #include <stdio.h>
 
+#define unix // prool
+
 #define LOG_BUILDER LOG_LOCAL1
 #define LOG_PLAYER  LOG_LOCAL2
 

@@ -22,7 +22,7 @@ O_FILES = act_comm.o act_enter.o act_info.o act_move.o act_obj.o act_wiz.o \
 
 tsw: $(O_FILES)
 	rm -f tsw
-	$(CC) $(L_FLAGS) -o tsw $(O_FILES)
+	$(CC) -o tsw $(O_FILES) $(L_FLAGS)
 
 purify: $(O_FILES)
 	rm -f tsw

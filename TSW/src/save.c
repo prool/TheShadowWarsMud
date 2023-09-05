@@ -25,6 +25,8 @@
 *	ROM license, in the file Rom24/doc/rom.license			   *
 ***************************************************************************/
 
+#define unix // prool
+
 #if defined(macintosh)
 #include <types.h>
 #else

@@ -321,19 +321,19 @@ void load_struct( FILE *fp, void * typebase, const struct savetable_type * table
 				switch(temp->type_field)
 				{
 					case FIELD_STRING:
-					pcadena = (char **) ((int) temp->leader_field - (int) typebase + (int) leader);
+					pcadena = (char **) ( temp->leader_field -  typebase +  leader);
 					*pcadena = fread_string(fp);
 					found = TRUE, cnt++;
 					break;
 
 					case FIELD_SHINT:
-					pshint = (sh_int *) ((int) temp->leader_field - (int) typebase + (int) leader);
+					pshint = (sh_int *) ( temp->leader_field -  typebase +  leader);
 					*pshint = (sh_int) fread_number(fp);
 					found = TRUE, cnt++;
 					break;
 
 					case FIELD_INT:
-					pint = (int *) ((int) temp->leader_field - (int) typebase + (int) leader);
+					pint = (int *) ( temp->leader_field -  typebase +  leader);
 					*pint = fread_number(fp);
 					found = TRUE, cnt++;
 					break;
@@ -341,7 +341,7 @@ void load_struct( FILE *fp, void * typebase, const struct savetable_type * table
 					case FIELD_FUNCION_INT_TO_STR:
 					function = temp->argument2;
 					cadena = fread_string(fp);
-					pint = (int *) ((int) temp->leader_field - (int) typebase + (int) leader);
+					pint = (int *) ( temp->leader_field -  typebase +  leader);
 					if ((*function) (pint, cadena) == FALSE)
 						bugf( "load_struct : field %s invalido, cadena %s",
 							temp->field, cadena );
@@ -352,7 +352,7 @@ void load_struct( FILE *fp, void * typebase, const struct savetable_type * table
 					case FIELD_FUNCION_SHINT_TO_STR:
 					function = temp->argument2;
 					cadena = fread_string(fp);
-					pshint = (sh_int *) ((int) temp->leader_field - (int) typebase + (int) leader);
+					pshint = (sh_int *) ( temp->leader_field -  typebase +  leader);
 					if ((*function) (pshint, cadena) == FALSE)
 						bugf( "load_struct : field %s invalid, cadena %s",
 							temp->field, cadena );
@@ -362,7 +362,7 @@ void load_struct( FILE *fp, void * typebase, const struct savetable_type * table
 
 					case FIELD_FLAGSTRING:
 					flagtable = (struct flag_type *) temp->argument;
-					pentero = (int *) ((int) temp->leader_field - (int) typebase + (int) leader);
+					pentero = (int *) ( temp->leader_field -  typebase +  leader);
 					cadena = fread_string(fp);
 					if ( (*pentero = flag_value(flagtable, cadena)) == NO_FLAG )
 						*pentero = 0;
@@ -372,7 +372,7 @@ void load_struct( FILE *fp, void * typebase, const struct savetable_type * table
 
 					case FIELD_SHINT_FLAGSTRING:
 					flagtable = (struct flag_type *) temp->argument;
-					pshint = (sh_int *) ((int) temp->leader_field - (int) typebase + (int) leader);
+					pshint = (sh_int *) ( temp->leader_field -  typebase +  leader);
 					cadena = fread_string(fp);
 					if ( (*pshint = flag_value(flagtable, cadena)) == NO_FLAG )
 						*pshint = 0;
@@ -382,7 +382,7 @@ void load_struct( FILE *fp, void * typebase, const struct savetable_type * table
 					
 					case FIELD_INT_BACKGROUNDSTRING:
 					backgroundtable = (struct background_type *) temp->argument;
-					pint = (int *) ((int) temp->leader_field - (int) typebase + (int) leader);
+					pint = (int *) ( temp->leader_field -  typebase +  leader);
 					cadena = fread_string(fp);
 					if ( (*pint = background_flag_value(backgroundtable, cadena)) == NO_FLAG )
 						*pint = 0;
@@ -391,24 +391,24 @@ void load_struct( FILE *fp, void * typebase, const struct savetable_type * table
 					break;					
 
 					case FIELD_FLAGVECTOR:
-					pentero = (int *) ((int) temp->leader_field - (int) typebase + (int) leader);
+					pentero = (int *) ( temp->leader_field -  typebase +  leader);
 					*pentero = fread_flag(fp);
 					found = TRUE, cnt++;
 					break;
 
 					case FIELD_BOOL:
-					pbool = (bool *) ((int) temp->leader_field - (int) typebase + (int) leader);
+					pbool = (bool *) ( temp->leader_field -  typebase +  leader);
 					cadena = fread_word(fp);
 					*pbool = str_cmp( cadena, "false" ) ? TRUE : FALSE;
 					found = TRUE, cnt++;
 					break;
 
 					case FIELD_SHINT_ARRAY:
-					pshint = (sh_int *) ((int) temp->leader_field - (int) typebase + (int) leader);
+					pshint = (sh_int *) ( temp->leader_field -  typebase +  leader);
 					i = 0;
 					while( str_cmp((cadena = fread_word(fp)), "@") )
 					{
-						if ( i == (int) temp->argument )
+						if ( i ==  temp->argument )
 							bugf( "load_struct : field_shint_array %s con exceso of elementos",
 								temp->field );
 						else
@@ -418,11 +418,11 @@ void load_struct( FILE *fp, void * typebase, const struct savetable_type * table
 					break;
 
 					case FIELD_STRING_ARRAY:
-					pcadena = (char **) ((int) temp->leader_field - (int) typebase + (int) leader);
+					pcadena = (char **) ( temp->leader_field -  typebase +  leader);
 					i = 0;
 					while( str_cmp((cadena = fread_string(fp)), "@") )
 					{
-						if ( i == (int) temp->argument )
+						if ( i ==  temp->argument )
 							bugf( "load_struct : field_string_array %s con exceso of elementos",
 								temp->field);
 						else
@@ -437,12 +437,12 @@ void load_struct( FILE *fp, void * typebase, const struct savetable_type * table
 					break;
 
 					case FIELD_BOOL_ARRAY:
-					pbool = (bool *) ((int) temp->leader_field - (int) typebase + (int) leader);
+					pbool = (bool *) ( temp->leader_field -  typebase +  leader);
 					i = 0;
 					while( str_cmp((cadena = fread_word(fp)), "@") )
 					{
 						if ( (temp->argument != NULL
-						  && i == (int) temp->argument)
+						  && i ==  temp->argument)
 						||   (temp->argument == NULL
 						  && temp->argument2 != NULL
 						  && i == *( (int *) temp->argument2)) )
@@ -493,83 +493,83 @@ void save_struct( FILE *fp, void * typebase, const struct savetable_type * table
 			break;
 
 			case FIELD_STRING:
-			pcadena = (char **) ((int) temp->leader_field - (int) typebase + (int) leader);
+			pcadena = (char **) ( temp->leader_field -  typebase +  leader);
 			fprintf( fp, "%s %s~\n", temp->field, !IS_NULLSTR(*pcadena) ? *pcadena : "" );
 			break;
 
 			case FIELD_SHINT:
-			pshint = (sh_int *) ((int) temp->leader_field - (int) typebase + (int) leader);
+			pshint = (sh_int *) ( temp->leader_field -  typebase +  leader);
 			fprintf( fp, "%s %d\n", temp->field, *pshint );
 			break;
 
 			case FIELD_INT:
-			pentero = (int *) ((int) temp->leader_field - (int) typebase + (int) leader);
+			pentero = (int *) ( temp->leader_field -  typebase +  leader);
 			fprintf( fp, "%s %d\n", temp->field, *pentero );
 			break;
 
 			case FIELD_FUNCION_INT_TO_STR:
 			function = temp->argument;
-			pentero = (int *) ((int) temp->leader_field - (int) typebase + (int) leader);
+			pentero = (int *) ( temp->leader_field -  typebase +  leader);
 			cadena = (*function) ((void *) pentero);
 			fprintf( fp, "%s %s~\n", temp->field, cadena );
 			break;
 
 			case FIELD_FUNCION_SHINT_TO_STR:
 			function = temp->argument;
-			pshint = (sh_int *) ((int) temp->leader_field - (int) typebase + (int) leader);
+			pshint = (sh_int *) ( temp->leader_field -  typebase +  leader);
 			cadena = (*function) ((void *) pshint);
 			fprintf( fp, "%s %s~\n", temp->field, cadena );
 			break;
 
 			case FIELD_FLAGSTRING:
 			flagtable = (struct flag_type *) temp->argument;
-			pentero = (int *) ((int) temp->leader_field - (int) typebase + (int) leader);
+			pentero = (int *) ( temp->leader_field -  typebase +  leader);
 			fprintf( fp, "%s %s~\n", temp->field, flag_string(flagtable, *pentero) );
 			break;
 
 			case FIELD_SHINT_FLAGSTRING:
 			flagtable = (struct flag_type *) temp->argument;
-			pshint = (sh_int *) ((int) temp->leader_field - (int) typebase + (int) leader);
+			pshint = (sh_int *) ( temp->leader_field -  typebase +  leader);
 			fprintf( fp, "%s %s~\n", temp->field, flag_string(flagtable, *pshint) );
 			break;
 
 			case FIELD_INT_BACKGROUNDSTRING:
 			backgroundtable = (struct background_type *) temp->argument;
-			pint = (int *) ((int) temp->leader_field - (int) typebase + (int) leader);
+			pint = (int *) ( temp->leader_field -  typebase +  leader);
 			fprintf( fp, "%s %s~\n", temp->field, background_flag_string(backgroundtable, *pint) );
 			break;
 			
 			case FIELD_FLAGVECTOR:
-			pentero = (int *) ((int) temp->leader_field - (int) typebase + (int) leader);
+			pentero = (int *) ( temp->leader_field -  typebase +  leader);
 			fprintf( fp, "%s %s\n", temp->field, print_flags(*pentero) );
 			break;
 
 			case FIELD_BOOL:
-			pbool = (bool *) ((int) temp->leader_field - (int) typebase + (int) leader);
+			pbool = (bool *) ( temp->leader_field -  typebase +  leader);
 			fprintf( fp, "%s %s\n", temp->field,
 						(*pbool == TRUE) ? "true" : "false" );
 			break;
 
 			case FIELD_SHINT_ARRAY:
-			pshint = (sh_int *) ((int) temp->leader_field - (int) typebase + (int) leader);
+			pshint = (sh_int *) ( temp->leader_field -  typebase +  leader);
 			fprintf( fp, "%s ", temp->field );
-			for ( i = 0; i < (int) temp->argument; i++ )
+			for ( i = 0; i <  temp->argument; i++ )
 				fprintf( fp, "%d ", pshint[i] );
 			fprintf( fp, "@\n" );
 			break;
 
 			case FIELD_STRING_ARRAY:
-			pcadena = (char **) ((int) temp->leader_field - (int) typebase + (int) leader);
+			pcadena = (char **) ( temp->leader_field -  typebase +  leader);
 			fprintf( fp, "%s ", temp->field );
-			for ( i = 0; i < (int) temp->argument; i++ )
+			for ( i = 0; i <  temp->argument; i++ )
 				fprintf( fp, "%s~ ", !IS_NULLSTR(pcadena[i]) ? pcadena[i] : "" );
 			fprintf( fp, "@~\n" );
 			break;
 
 			case FIELD_BOOL_ARRAY:
-			pbool = (bool *) ((int) temp->leader_field - (int) typebase + (int) leader);
+			pbool = (bool *) ( temp->leader_field -  typebase +  leader);
 			fprintf( fp, "%s ", temp->field );
-			for ( i = 0; i < (temp->argument ? (int) temp->argument : *(int *) temp->argument2); i++ )
+			for ( i = 0; i < (temp->argument ?  temp->argument : *(int *) temp->argument2); i++ )
 				fprintf( fp, "%d ", pbool[i] == TRUE ? 1 : 0 );
 			fprintf( fp, "@\n" );
 			break;

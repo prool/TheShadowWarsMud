@@ -43,6 +43,9 @@
  * -- Furey  26 Jan 1993
  */
 
+#define unix // prool
+#define linux // prool
+
 #if defined(macintosh)
 #include <types.h>
 #else
@@ -178,7 +181,7 @@ int	listen		args( ( int s, int backlog ) );
 bool    g_plevelFlag;
 bool    g_extraplevelFlag;
 int	close		args( ( int fd ) );
-int	gettimeofday	args( ( struct timeval *tp, struct timezone *tzp ) );
+//int	gettimeofday	args( ( struct timeval *tp, struct timezone *tzp ) ); // prool
 /* int	read		args( ( int fd, char *buf, int nbyte ) ); */
 int	select		args( ( int width, fd_set *readfds, fd_set *writefds,
 			    fd_set *exceptfds, struct timeval *timeout ) );
@@ -1072,6 +1075,7 @@ void init_descriptor( int control )
     /*
      * Send the greeting.
      */
+#if 1 // 0 - prool, 1 - standard code
     {
 	extern char * help_greeting;
 	if ( help_greeting[0] == '.' )
@@ -1079,6 +1083,9 @@ void init_descriptor( int control )
 	else
 	    write_to_buffer( dnew, help_greeting  , 0 );
     }
+#else
+	    write_to_buffer( dnew, "Name : "  , 0 );
+#endif
 
     return;
 }

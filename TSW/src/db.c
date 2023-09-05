@@ -2805,7 +2805,7 @@ MOB_INDEX_DATA *get_mob_index( unsigned int vnum )
     if ( fBootDb )
     {
 	bug( "Get_mob_index: bad vnum %d.", vnum );
-	exit( 1 );
+	//exit( 1 ); // prool fool
     }
 
     return NULL;
@@ -2832,7 +2832,7 @@ OBJ_INDEX_DATA *get_obj_index( unsigned int vnum )
     if ( fBootDb )
     {
 	bug( "Get_obj_index: bad vnum %d.", vnum );
-	exit( 1 );
+	//exit( 1 ); // prool fool
     }
 
     return NULL;
@@ -2859,7 +2859,7 @@ ROOM_INDEX_DATA *get_room_index( unsigned int vnum )
     if ( fBootDb )
     {
 	bug( "Get_room_index: bad vnum %d.", vnum );
-	exit( 1 );
+	//exit( 1 ); // prool fool
     }
 
     return NULL;
