@@ -1212,7 +1212,7 @@ typedef struct sguild_member_data {
 
 #define MAX_SGUILD_MEBER_DATA 100
 
-struct sguild_member_data gd[MAX_SGUILD_MEBER_DATA];
+extern struct sguild_member_data gd[MAX_SGUILD_MEBER_DATA]; // prool
 
 void init_sguild_member_data()
 {

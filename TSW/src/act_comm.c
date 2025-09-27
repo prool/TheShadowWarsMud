@@ -43,6 +43,8 @@
 #include "tables.h"
 #include <errno.h>
 
+struct	clan_type	clan_table[MAX_CLAN]; // prool
+
 /* 
  * Channel History made global so everyone can access it
  */

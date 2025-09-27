@@ -3882,7 +3882,7 @@ void death_cry      args( ( CHAR_DATA *ch ) );
 int get_skill_difference args( (CHAR_DATA *ch, CHAR_DATA *victim, int gsn) );
 
 /* guild.c */
-struct	clan_type	clan_table[MAX_CLAN];
+extern struct	clan_type	clan_table[MAX_CLAN]; // prool
 char *  guild_bit_name  args( ( int guild_flags ) );
 bool    is_clan         args( (CHAR_DATA *ch) );
 bool    is_same_clan    args( (CHAR_DATA *ch, CHAR_DATA *victim) );
@@ -3910,7 +3910,7 @@ char	*player_oguild	args( (CHAR_DATA *ch) );
 int compare_cross_ranks       args( (const void *v1, const void *v2) );
 
 /* sguild.c */
-struct  sguild_type sguild_table[MAX_CLAN];
+extern struct  sguild_type sguild_table[MAX_CLAN]; // prool
 char *  sguild_bit_name  args( ( int sguild_flags ) );
 bool    is_sguild         args( (CHAR_DATA *ch) );
 bool    is_same_sguild    args( (CHAR_DATA *ch, CHAR_DATA *victim) );
@@ -3926,7 +3926,7 @@ bool    can_sguild_demote      args( (CHAR_DATA *ch) );
 void    sguild_tr_promote      args( (CHAR_DATA * ch, bool promote, bool pc_kill_promote) );
 
 /* ssguild.c */
-struct  ssguild_type ssguild_table[MAX_CLAN];
+extern struct  ssguild_type ssguild_table[MAX_CLAN]; // prool
 char *  ssguild_bit_name  args( ( int ssguild_flags ) );
 bool    is_ssguild         args( (CHAR_DATA *ch) );
 bool    is_same_ssguild    args( (CHAR_DATA *ch, CHAR_DATA *victim) );

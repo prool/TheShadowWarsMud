@@ -19,7 +19,7 @@ struct savetable_type
 
 struct cmd_type		cmd;
 struct race_type	race;
-int MAX_SKILL;
+extern int MAX_SKILL; // prool
 #if defined(FIRST_BOOT)
 struct pc_race_type	pcrace;
 #endif

@@ -35,6 +35,9 @@
 #include "merc.h"
 #include "recycle.h"
 
+struct  ssguild_type ssguild_table[MAX_CLAN]; // prool
+struct  sguild_type sguild_table[MAX_CLAN]; // prool
+
 #if defined(KEY)
 #undef KEY
 #endif
@@ -1134,7 +1137,7 @@ typedef struct ssguild_member_data {
 
 #define MAX_SSGUILD_MEBER_DATA 100
 
-struct ssguild_member_data gd[MAX_SSGUILD_MEBER_DATA];
+extern struct ssguild_member_data gd[MAX_SSGUILD_MEBER_DATA]; // prool
 
 void init_ssguild_member_data()
 {

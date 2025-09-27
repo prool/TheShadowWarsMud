@@ -39,7 +39,7 @@ extern	struct	social_type	xSoc;
 
 	int			maxSocial;	/* max number of socials */
 #if !defined(FIRST_BOOT)
-	struct	social_type *	social_table;	/* and social table */
+extern	struct	social_type *	social_table;	/* and social table */ // prool
 #endif
 
 const	struct	olc_comm_type	social_olc_comm_table [] =

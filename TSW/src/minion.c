@@ -576,7 +576,7 @@ typedef struct minion_member_data {
 
 #define MAX_MINION_MEBER_DATA 100
 
-struct minion_member_data gd[MAX_MINION_MEBER_DATA];
+extern struct minion_member_data gd[MAX_MINION_MEBER_DATA]; // prool
 
 void init_minion_member_data()
 {
